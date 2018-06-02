@@ -74,17 +74,16 @@ class Detail {
         $db = new DataBase();
         $conn = $db->connect();
         if ($conn) {
-            $sql = "SELECT d.id, u.email ,d.genero FROM detail as d inner join user as u on u.id= d.user_id "
-                    . "WHERE d.user_id=$this->user_id";
+            $sql = "SELECT d.id, u.email ,d.genero FROM detail as d inner join user as u on u.id= d.user_id ";
+            echo $sql;
             if ($conn->query($sql)) {
                 $rs = $conn->query($sql);
                 // print_r(mysqli_fetch_assoc($rs));
                 while ($fila = mysqli_fetch_assoc($rs)) {
 
                     $d = new Detail();
-                    $d->setId($fila['id']);
-                    $d->setGenero($genero);
-                    $d->setUser_id($user_id);
+                    //$d->setId($fila[$id]);
+                    //$d->setGenero($genero);
 
                     array_push($details, $d);
                 }
@@ -103,7 +102,6 @@ class Detail {
                     . "situacion_sentimental ='" . $this->situacion_sentimental . "',"
                     . "fecha_nacimiento ='" . $this->fecha_nacimiento . "',"
                     . "fecha_nacimiento ='" . $this->fecha_nacimiento . "',"
-                    . "user_id ='" . $this->user_id . "',"
                     . "where id=" . $this->id . ";";
 
             if ($conn->query($sql) === TRUE) {
