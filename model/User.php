@@ -77,6 +77,26 @@ class User {
         }
     }
     
+    
+    
+    public function updateUser() {
+        $db = new DataBase();
+        $conn = $db->connect();
+
+        if ($conn) {
+            $sql = "update user "
+                    . "set email ='" . $this->nombre . "',"
+                    . "password ='" . $this->codigo . "',"
+                    . "where id=" . $this->id . ";";
+
+            if ($conn->query($sql) === TRUE) {
+                return array(TRUE, $this->toJSON());
+            } else {
+                return array(FALSE, $conn->error);
+            }
+        }
+    }
+    
 
     function toJSON() {
         $arr = array(

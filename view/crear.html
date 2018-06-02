@@ -48,9 +48,9 @@ and open the template in the editor.
             <!-- aqui parte el navBar -->
 
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand" href="../index.html">Listar Producto |</a>
-                <a class="navbar-brand" href="eliminar.html">Eliminar Producto |</a>
-                <a class="navbar-brand" href="actualizar.html">Actualizar Producto |</a>
+                <a class="navbar-brand" href="../index.html">Listar Usuario |</a>
+                <a class="navbar-brand" href="eliminar.html">Eliminar Usuario |</a>
+                <a class="navbar-brand" href="actualizar.html">Actualizar Usuario |</a>
 
             </nav>
 
@@ -63,7 +63,7 @@ and open the template in the editor.
                     <input type="password" class="form-control" name="password" placeholder="password" required="" autofocus="" />
                     <input type="date" class="form-control" name="fecha_nacimiento" placeholder="fecha_nacimiento" required="" autofocus="" />
                     <input type="text" class="form-control" name="genero" placeholder="M - F" required="" autofocus="" />
-                    <input type="date" class="form-control" name="situacion_sintimental" placeholder="situacion_sintimental" required="" autofocus="" />
+                    <input type="text" class="form-control" name="situacion_sintimental" placeholder="situacion_sintimental" required="" autofocus="" />
                     
 
 
@@ -76,16 +76,16 @@ and open the template in the editor.
                 $(document).ready(function () {
                     $("#btnCrear").click(function (event) {
                         var body = {
-                            //'username': $("input[name='username']").val(),
-                            //'password': $("input[name='password']").val()
-                            'nombre': $("input[name='nombre']").val(),
-                            'codigo': $("input[name='codigo']").val(),
-                            'valor': $("input[name='valor']").val()
+                            'email': $("input[name='email']").val(),
+                            'password': $("input[name='password']").val(),
+                            'fecha_nacimiento': $("input[name='fecha_nacimiento']").val(),
+                            'genero': $("input[name='genero']").val(),
+                            'situacion_sintimental': $("input[name='situacion_sintimental']").val()
                         }
-                        $.post("../controller/crearproducto.php", body, function (a, b, c) {
+                        $.post("../controller/crearuser.php", body, function (a, b, c) {
                             swal(
                                     'Excelente!',
-                                    'Producto Creado!',
+                                    'Usuario Creado!',
                                     'success'
                                     )
                         }).fail(function (resp, error, responseType) {

@@ -93,13 +93,35 @@ class Detail {
         }
     }
     
+    public function updateDetail() {
+        $db = new DataBase();
+        $conn = $db->connect();
+
+        if ($conn) {
+            $sql = "update detail "
+                    . "set genero ='" . $this->genero . "',"
+                    . "situacion_sentimental ='" . $this->situacion_sentimental . "',"
+                    . "fecha_nacimiento ='" . $this->fecha_nacimiento . "',"
+                    . "fecha_nacimiento ='" . $this->fecha_nacimiento . "',"
+                    . "user_id ='" . $this->user_id . "',"
+                    . "where id=" . $this->id . ";";
+
+            if ($conn->query($sql) === TRUE) {
+                return array(TRUE, $this->toJSON());
+            } else {
+                return array(FALSE, $conn->error);
+            }
+        }
+    }
+    
+    
     function toJSON() {
         $arr = array(
             'id' => $this->id,
             'email' => $this->genero,
-            'password' => $this->situacion_sentimental,
-            'password' => $this->fecha_nacimiento,
-            'password' => $this->user_id,
+            'situacion_sentimental' => $this->situacion_sentimental,
+            'fecha_nacimiento' => $this->fecha_nacimiento,
+            'user_id' => $this->user_id,
         );
         return json_encode($arr);
     }
@@ -108,9 +130,9 @@ class Detail {
         $arr = array(
             'id' => $this->id,
             'email' => $this->genero,
-            'password' => $this->situacion_sentimental,
-            'password' => $this->fecha_nacimiento,
-            'password' => $this->user_id,
+            'situacion_sentimental' => $this->situacion_sentimental,
+            'fecha_nacimiento' => $this->fecha_nacimiento,
+            'user_id' => $this->user_id,
         );
         return $arr;
     }
