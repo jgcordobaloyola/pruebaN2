@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Mostrando el listado de los producto</title>
+        <meta charset="utf-8">
+        <title></title>
+        <script
+            src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous">
+        </script>
+        <!-- Latest compiled and minified CSS -->
+        <link
+            rel="stylesheet"
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+            integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+            crossorigin="anonymous"
+            >
+
+        <!-- Optional theme -->
+        <link
+            rel="stylesheet"
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+            integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+            crossorigin="anonymous"
+            >
+
+        <!-- Latest compiled and minified JavaScript -->
+        <script
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous">
+        </script>
+
+        <script src="https://unpkg.com/sweetalert2@7.19.3/dist/sweetalert2.all.js"></script>
+
+        <link rel="stylesheet" href="../css/login.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div class = "container">
+
+            <!-- aqui parte el navBar -->
+
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand" href="../index.html">Listar Producto |</a>
+                <a class="navbar-brand" href="eliminar.html">Eliminar Producto |</a>
+                <a class="navbar-brand" href="actualizar.html">Actualizar Producto |</a>
+
+            </nav>
+
+            <div class="wrapper">
+                <div id="createUserForm"  name="Login_Form" class="form-signin">
+                    <h3 class="form-signin-heading">Creacion de usuarios</h3>
+                    <hr class="colorgraph">
+                    <br>
+                    <input type="text" class="form-control" name="email" placeholder="email" required="" autofocus="" />
+                    <input type="password" class="form-control" name="password" placeholder="password" required="" autofocus="" />
+                    <input type="date" class="form-control" name="fecha_nacimiento" placeholder="fecha_nacimiento" required="" autofocus="" />
+                    <input type="text" class="form-control" name="genero" placeholder="M - F" required="" autofocus="" />
+                    <input type="date" class="form-control" name="situacion_sintimental" placeholder="situacion_sintimental" required="" autofocus="" />
+                    
+
+
+                    <button id="btnCrear" value="Login" type="button">Crear Usuario</button>
+                </div>
+
+            </div>
+        </div>
+        <script type="text/javascript">
+                $(document).ready(function () {
+                    $("#btnCrear").click(function (event) {
+                        var body = {
+                            //'username': $("input[name='username']").val(),
+                            //'password': $("input[name='password']").val()
+                            'nombre': $("input[name='nombre']").val(),
+                            'codigo': $("input[name='codigo']").val(),
+                            'valor': $("input[name='valor']").val()
+                        }
+                        $.post("../controller/crearproducto.php", body, function (a, b, c) {
+                            swal(
+                                    'Excelente!',
+                                    'Producto Creado!',
+                                    'success'
+                                    )
+                        }).fail(function (resp, error, responseType) {
+                            swal({
+                                type: 'error',
+                                title: responseType,
+                                text: resp['responseText'],
+                            })
+                        });
+                        //event.preventDefault();
+                    })
+                })
+        </script>
+    </body>
+</html>
